@@ -15,7 +15,7 @@ const upload = multer({
     storage: storage,
 });
 
-router.route("/addimage").patch(upload.single("img"), (req, res) => {
+router.route("/addimage").post(upload.single("img"), (req, res) => {
     try {
         res.json({ path: req.file.filename });
     } catch (error) {
