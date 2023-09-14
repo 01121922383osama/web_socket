@@ -23,10 +23,11 @@ io.on("connection", (socket) => {
         socket.on('message', (msg) => {
             console.log(msg);
             let targetId = msg.targetId;
-            if (clients[targetId]) {
-                io.emit('message', msg);
+            if (clients[targetId] && clients[targetId] !== socket) {
+                clients[targetId].emit('message', msg);
             }
         });
+
     });
 });
 app.route('/check').get((req, res) => {
