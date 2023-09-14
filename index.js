@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const server = http.createServer(app);
 const io = require("socket.io")(server);
+app.use("/uploads", express.static("uploads"));
 
 // Middleware
 app.use(express.json());
